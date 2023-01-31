@@ -1,0 +1,38 @@
+﻿@model LacunaGenetics.Models.Job;
+@{
+    Layout = "_LayoutStart";
+    ViewData["Title"] = "Job";
+    var job = ViewBag.Job;
+}
+
+<h2 class="text-center">DNA Operations</h2>
+<div class="d-flex flex-column mt-5 text-center">
+    <br />
+    <div class="alert text-white bg-primary border-0 alert-dismissible fade show" style="max-width: 300px" role="alert">
+        <strong>You received a new job!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Operation</h5>
+        <div class="card-body">
+            <h5 class="card-title">@job.Type</h5>
+            <p class="card-text mt-5">@ViewBag.Description</p>
+            @foreach (string item in ViewBag.Options)
+            {
+                <span class="badge rounded-pill bg-primary">🗸 @item</span>
+            }
+            <div class="progress mt-3" style="height: 20px;">
+              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <a href="#" class="btn btn-primary mt-5">Solve and send back</a>
+        </div>
+    </div>
+    
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
