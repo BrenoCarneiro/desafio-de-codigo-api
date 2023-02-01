@@ -48,6 +48,14 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.2, )"
+            },
+            "System.Memory.Data": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Uno.UI": {
+              "target": "Package",
+              "version": "[4.7.30, )"
             }
           },
           "imports": [

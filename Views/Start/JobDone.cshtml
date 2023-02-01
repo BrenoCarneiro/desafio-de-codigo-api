@@ -1,0 +1,48 @@
+﻿@model LacunaGenetics.Models.Job;
+@{
+    Layout = "_LayoutStart";
+    ViewData["Title"] = "Job";
+    var job = ViewBag.Job;
+}
+
+<h2 class="text-center">DNA Operations</h2>
+<div class="d-flex flex-column mt-5 text-center">
+    <br />
+    <div class="alert text-white bg-primary border-0 alert-dismissible fade show text-center" style="max-width: 300px" role="alert">
+        <strong>Job done!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <div class="card">
+        <h5 class="card-header">Success</h5>
+        <div class="card-body">
+            <p class="card-text mt-5">Congratulations! Lacuna Genetics successfully received the job solved.</p>
+            <span id="badge" class="d-none badge rounded-pill bg-success"> 🗸 @job.Type </span>
+            <div class="d-flex justify-content-between">
+                <form asp-controller="Start" asp-action="Job" method="get">
+                <a asp-controller="Start" asp-action="Index" class="btn btn-secondary">Cancel</a>
+                <button id="btnLoading" class="btn btn-primary mt-5" type="submit">
+                    <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span id="spanLoadingText">Request a new job</span>
+                </button>
+            </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        $(document).ready(function(){
+          $("#btnLoading").click(function(){
+                $("#spanLoadingText").text("Requesting...");
+                $("#spanLoading").removeClass("d-none");   
+          });
+        });
+
+    </script>
+}

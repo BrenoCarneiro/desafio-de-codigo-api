@@ -21,13 +21,10 @@
 </div>
 
 @section Scripts{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
     <script>
         $(document).ready(function(){
           $("#btnLoading").click(function(){
-                $("#spanLoadingText").text("Requesting...")
+                $("#spanLoadingText").text("Requesting...");
                 $("#spanLoading").removeClass("d-none");   
           });
         });

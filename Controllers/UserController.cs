@@ -1,13 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using LacunaGenetics.Models;
-using Newtonsoft.Json;
-using System.Net.Http.Headers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authentication;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Net.Http;
-using Microsoft.AspNetCore.Cors;
 using LacunaGenetics.Services;
 
 namespace LacunaGenetics.Controllers;

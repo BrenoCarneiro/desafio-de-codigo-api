@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "_LayoutStart";
+    ViewData["Title"] = "Operations";
+}
+
+<h2 class="text-center">DNA Operations</h2>
+<div class="mt-5 text-center">
+    <br />
+    <p style="font-size:22px">
+        Welcome!
+        <br />
+        Please request a operation from our server.
+    </p>
+    <form asp-controller="Start" asp-action="Job" method="get">
+        <button id="btnLoading" class="btn btn-secondary" type="submit">
+            <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+            <span id="spanLoadingText">Request</span>
+        </button>
+    </form>
+    <p>@ViewBag.Message</p>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+          $("#btnLoading").click(function(){
+                $("#spanLoadingText").text("Requesting...");
+                $("#spanLoading").removeClass("d-none");   
+          });
+        });
+    </script>
+}

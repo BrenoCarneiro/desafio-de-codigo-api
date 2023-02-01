@@ -22,17 +22,31 @@
             {
                 <span class="badge rounded-pill bg-primary">🗸 @item</span>
             }
-            <div class="progress mt-3" style="height: 20px;">
-              <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <a href="#" class="btn btn-primary mt-5">Solve and send back</a>
+                <span id="badge" class="d-none badge rounded-pill bg-success"> 🗸 Solved </span>
+            
+            <form asp-controller="Start" asp-action="JobDone" method="post">
+                <button id="btnLoading" class="btn btn-primary mt-5" type="submit">
+                    <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                    <span id="spanLoadingText">Solve and send back</span>
+                </button>
+            </form>
         </div>
     </div>
     
 </div>
 
-@section Scripts {
+@section Scripts{
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+    <script>
+        $(document).ready(function () {
+            $("#btnLoading").click(function () {
+                $("#spanLoadingText").text("Sending...");
+                $("#spanLoading").removeClass("d-none");
+                $("#badge").removeClass("d-none");
+            });
+        });
+
+    </script>
 }

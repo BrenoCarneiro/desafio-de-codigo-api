@@ -49,6 +49,10 @@ public class Job
     [JsonProperty("geneEncoded")]
     public string? GeneEncoded { get; set; }
 
+    [JsonProperty("isActivated")]
+    public bool? IsActivated { get; set; }
+
+
 }
 
 [JsonConverter(typeof(StringEnumConverter))]
