@@ -8,24 +8,21 @@
 <h2 class="text-center">DNA Operations</h2>
 <div class="d-flex flex-column mt-5 text-center">
     <br />
-    <div class="alert text-white bg-primary border-0 alert-dismissible fade show text-center" style="max-width: 300px" role="alert">
-        <strong>Job done!</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
     <div class="card">
-        <h5 class="card-header">Success</h5>
+        <h5 class="card-header">Success!</h5>
         <div class="card-body">
             <p class="card-text mt-5">Congratulations! Lacuna Genetics successfully received the job solved.</p>
-            <span id="badge" class="d-none badge rounded-pill bg-success"> 🗸 @job.Type </span>
+            <span id="badge" class="badge rounded-pill bg-success mt-2"> 🗸 @job.Type </span>
+            <span id="badge" class="badge rounded-pill bg-success"> 🗸 Solved </span>
             <div class="d-flex justify-content-between">
-                <form asp-controller="Start" asp-action="Job" method="get">
-                <a asp-controller="Start" asp-action="Index" class="btn btn-secondary">Cancel</a>
-                <button id="btnLoading" class="btn btn-primary mt-5" type="submit">
-                    <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
-                    <span id="spanLoadingText">Request a new job</span>
-                </button>
-            </form>
+                <a asp-controller="Start" asp-action="Index" class="btn mt-5">Cancel</a>
+                <form asp-controller="Start" asp-action="Job" method="get">   
+                    <button id="btnLoading" class="btn mt-5" type="submit">
+                        <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                        <span id="spanLoadingText">Request a new job</span>
+                    </button>
+                </form>
             </div>
         </div>
     </div>

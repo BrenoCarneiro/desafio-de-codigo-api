@@ -1,10 +1,11 @@
 ﻿@model LacunaGenetics.Models.UserModel
 @{
     ViewData["Title"] = "Register";
+    Layout = "_Layout";
 }
 <h2 class="text-center">Register</h2>
 <div class="mt-5" style="min-width: 310px">
-    <form asp-controller="User" asp-action="Register">
+    <form asp-controller="User" asp-action="RegisterUser" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
             <label asp-for="Username" class="control-label"></label>
@@ -23,12 +24,12 @@
         </div>
 
         <div class="d-flex justify-content-between">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>
-            <button type="submit" value="Register" class="btn btn-dark">Register</button>
+            <a asp-controller="Home" asp-action="Index" class="btn">Back</a>
+            <button type="submit" value="RegisterUser" class="btn">Register</button>
         </div>
         
     </form>
-    <p class=" mt-2 text-center alert-secondary" role="alert" ">@ViewBag.Message</p>
+    <p class=" mt-2 text-center alert-dark" role="alert" ">@ViewBag.Message</p>
 </div>
 
 @section Scripts {

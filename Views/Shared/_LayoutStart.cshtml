@@ -10,9 +10,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark text-light border-bottom box-shadow mb-3 pt-2 pb-2">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Start" asp-action="Index">LacunaGenetics</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><br /><br /><br /><br /><p>L<span style="color: #e94e24;">A</span>CUNA</p><p style="color: #e94e24;">GENETICS_</p></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -20,23 +20,46 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-light" asp-controller="Home" asp-action="Index">HOME</a>
                         </li>
-                        <li class="nav-item dropdown">
+
+                        <li class="nav-item text-light">
+                            <a href="#" class="nav-link text-light" data-bs-toggle="modal" data-bs-target="#myModal">CONTACT ME</a>
+                        </li>
+                        <li class="nav-item dropdown text-light">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 @ViewBag.Username
                             </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li>@ViewBag.Email</li>
-                                <li><a class="dropdown-item text-dark" asp-controller="User" asp-action="Logout">Log out</a></li>
+                            <ul class="dropdown-menu text-light" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item text-light" asp-controller="User" asp-action="Logout">LOG OUT</a></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
+            
         </nav>
     </header>
-
+    <div id="myModal" class="modal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <h1 class="modal-title"><b>CONTACT ME<span style="color: #e94e24;">_</span></b></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p style="color: #e94e24;">name_</p>
+                    <p>Breno Carneiro</p>
+                    <p style="color: #e94e24;">e-mail_</p>
+                    <p>breno.carneiro@gmail.com</p>
+                    <p style="color: #e94e24;">phone_</p>
+                    <p>+55 (71) 9 9680-0166</p>
+                </div>
+                <div class="modal-footer border-0">
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="d-flex mt-4 justify-content-center align-items-center">
         <main role="main">
             @RenderBody()

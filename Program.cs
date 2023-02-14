@@ -1,6 +1,5 @@
 using LacunaGenetics.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,8 +21,6 @@ builder.Services.AddAuthentication(options =>
     options.Cookie.Name = "UserLoginCookie";
     options.Cookie.Path = "/";
     options.LoginPath = "/User/Login";
-    options.ReturnUrlParameter = "";
-    options.Cookie.HttpOnly = true;
     options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.Cookie.SameSite = SameSiteMode.Strict;
 });

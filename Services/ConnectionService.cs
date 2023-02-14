@@ -26,11 +26,22 @@ public class ConnectionService
     private const string SessionKeyPassword = "_Password";
     private const string SessionKeyToken = "_Token";
 
+    public async Task Register(UserModel user, HttpContext httpContext)
+    {
+        var httpClient = _httpClientFactory.CreateClient("gene");
+        HttpResponseMessage response = await httpClient.PostAsJsonAsync("/api/users/create", user);
+        if (response.IsSuccessStatusCode)
+        {
+            string jsonString = await response.Content.ReadAsStringAsync();
+            ResponseObject = JsonConvert.DeserializeObject<ResponseModel>(jsonString);
+        }
+    }
+
     public async Task Login(UserModel user, HttpContext httpContext)
     {
         var httpClient = _httpClientFactory.CreateClient("gene");
         HttpResponseMessage response = await httpClient.PostAsJsonAsync("/api/users/login", user);
-        if (response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode )
         {
             string jsonString = await response.Content.ReadAsStringAsync();
             ResponseObject = JsonConvert.DeserializeObject<ResponseModel>(jsonString);
@@ -47,11 +58,15 @@ public class ConnectionService
                 var claimsIdentity = new ClaimsIdentity(userClaims, CookieAuthenticationDefaults.AuthenticationScheme);
                 await httpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), new AuthenticationProperties
                 {
-                    IsPersistent = user.IsPersistent,
+                    IsPersistent = true,
                     AllowRefresh = true,
 
                 });
             }
+        }
+        if (ResponseObject.Code != Codes.Success)
+        {
+            await Login(user, httpContext);
         }
     }
 
@@ -59,16 +74,15 @@ public class ConnectionService
     {
         var httpClient = _httpClientFactory.CreateClient("gene");
         httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", httpContext.Session.GetString("_Token"));
-
-        
         HttpResponseMessage response = await httpClient.GetAsync("/api/dna/jobs");
-        if (!response.IsSuccessStatusCode)
-        {
-            ResponseObject.Job = null;
-            await RefreshToken(httpContext);
-        }
         string jsonString = await response.Content.ReadAsStringAsync();
         ResponseObject = JsonConvert.DeserializeObject<ResponseModel>(jsonString);
+        if (ResponseObject.Code != Codes.Success || ResponseObject.Job == null)
+        {
+            await RefreshToken(httpContext);
+            await Job(httpContext);
+        }
+        
     }
 
     public async Task SendJob(Job job, HttpContext httpContext)
@@ -99,8 +113,13 @@ public class ConnectionService
             ResponseObject = JsonConvert.DeserializeObject<ResponseModel>(jsonString);
             if (ResponseObject.Code == Codes.Success)
             {
-                httpContext.Session.SetString(SessionKeyMessage, ResponseObject.Message);
-                ResponseObject.Job = null;
+                httpContext.Session.SetString(SessionKeyMessage, ResponseObject.Code.ToString());
+       
+            }
+            else
+            {
+                httpContext.Session.SetString(SessionKeyMessage, ResponseObject.Code.ToString());
+        
             }
         }
     }

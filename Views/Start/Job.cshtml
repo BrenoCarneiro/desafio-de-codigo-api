@@ -8,10 +8,6 @@
 <h2 class="text-center">DNA Operations</h2>
 <div class="d-flex flex-column mt-5 text-center">
     <br />
-    <div class="alert text-white bg-primary border-0 alert-dismissible fade show" style="max-width: 300px" role="alert">
-        <strong>You received a new job!</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
 
     <div class="card">
         <h5 class="card-header">Operation</h5>
@@ -22,10 +18,10 @@
             {
                 <span class="badge rounded-pill bg-primary">🗸 @item</span>
             }
-                <span id="badge" class="d-none badge rounded-pill bg-success"> 🗸 Solved </span>
             
             <form asp-controller="Start" asp-action="JobDone" method="post">
-                <button id="btnLoading" class="btn btn-primary mt-5" type="submit">
+                
+                <button id="btnLoading" class="btn mt-5" type="submit">
                     <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
                     <span id="spanLoadingText">Solve and send back</span>
                 </button>
@@ -44,7 +40,6 @@
             $("#btnLoading").click(function () {
                 $("#spanLoadingText").text("Sending...");
                 $("#spanLoading").removeClass("d-none");
-                $("#badge").removeClass("d-none");
             });
         });
 

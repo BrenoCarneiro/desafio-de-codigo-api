@@ -9,15 +9,15 @@
     <p style="font-size:22px">
         Welcome!
         <br />
-        Please request a operation from our server.
+        Please request an operation from our server.
     </p>
     <form asp-controller="Start" asp-action="Job" method="get">
-        <button id="btnLoading" class="btn btn-secondary" type="submit">
+        <button id="btnLoading" class="btn" type="submit">
             <span id="spanLoading" class="d-none spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
             <span id="spanLoadingText">Request</span>
         </button>
     </form>
-    <p>@ViewBag.Message</p>
+    <p class="mt-3">@ViewBag.Message</p>
 </div>
 
 @section Scripts{

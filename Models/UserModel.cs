@@ -12,13 +12,10 @@ namespace LacunaGenetics.Models
 
         [EmailAddress]
         [JsonProperty("email")]
-        public string Email { get; set; }
+        public string? Email { get; set; }
 
         [Required(ErrorMessage = "Password should not be empty")]
         [JsonProperty("password")]
         public string Password { get; set; }
-
-        [JsonIgnore]
-        public bool IsPersistent { get; set; }
     }
 }

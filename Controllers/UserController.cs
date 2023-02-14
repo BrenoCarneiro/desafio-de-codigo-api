@@ -21,53 +21,39 @@ public class UserController : Controller
         return View();
     }
 
-    [HttpGet]
     public IActionResult Login()
     {
 
         return View();
     }
 
-    //[HttpPost]
-    //public async Task<IActionResult> Register(User user)
-    //{
-    //    if (!ModelState.IsValid)
-    //    {
-    //        ViewBag.Message = "Invalid data";
-    //        return View();
-    //    }
-    //    else
-    //    {
-    //        try
-    //        {
-    //            var httpClient = _httpClientFactory.CreateClient("gene");
-    //            HttpResponseMessage response = await httpClient.PostAsJsonAsync("/api/users/create", user);
-    //            if (response.IsSuccessStatusCode)
-    //            {
-    //                string jsonString = await response.Content.ReadAsStringAsync();
-    //                ResponseObject = JsonConvert.DeserializeObject<ResponseModel>(jsonString);
-    //            }
-
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            ViewBag.Message = e.Message;
-    //        }
-    //        finally
-    //        {
-    //            if (ResponseObject?.Code == Codes.Error)
-    //                ViewBag.Message = $"{ResponseObject?.Message.ToString()}";
-    //            else
-    //                ViewBag.Message = $"{ResponseObject?.Code.ToString()}";
-    //        }
-    //        return View();
-    //    }
-    //}
-
-
-  
     [HttpPost]
     [ValidateAntiForgeryToken]
+    [Route("/User/Register")]
+    public async Task<IActionResult> RegisterUser([FromForm] UserModel user)
+    {
+        if (!ModelState.IsValid)
+        {
+            ViewBag.Message = "Invalid data";
+            return View("Register");
+        }
+        else
+        {
+            await _connectionService.Register(user, HttpContext);
+            ResponseModel responseObject = _connectionService.ResponseObject;
+            if (responseObject?.Code == Codes.Error)
+                ViewBag.Message = $"{responseObject?.Message.ToString()}";
+            else
+                ViewBag.Message = $"{responseObject?.Code.ToString()}";
+            return View("Register");
+        }
+    }
+
+
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    [Route("/User/Login")]
     public async Task<IActionResult> LoginUser([FromForm] UserModel user)
     {
         if (!string.IsNullOrWhiteSpace(user.Username) || string.IsNullOrWhiteSpace(user.Password))
@@ -83,7 +69,7 @@ public class UserController : Controller
                 ViewBag.Message = $"{responseObject?.Message.ToString()}";
             }
         }
-        return View();
+        return View("Login");
     }
 
     public async Task<IActionResult> Logout()

@@ -1,10 +1,11 @@
 ﻿@model LacunaGenetics.Models.UserModel
 @{
     ViewData["Title"] = "Log in";
+    Layout = "_Layout";
 }
 <h2 class="text-center">Log in</h2>
 <div class="mt-5" style="min-width: 310px">
-    <form asp-controller="User" asp-action="LoginUser">
+    <form asp-controller="User" asp-action="LoginUser" method="post">
         <div class="form-group">
             <label asp-for="Username" class="control-label"></label>
             <input asp-for="Username" class="form-control" placeholder="Enter your username" required/>
@@ -13,16 +14,12 @@
             <label asp-for="Password" class="control-label"></label>
             <input asp-for="Password" class="form-control" placeholder="●●●●●●●●" type="password" required/>
         </div>
-
-        <div class="d-flex justify-content-end mb-2">
-            <label asp-for="IsPersistent" class="mx-2">Remember me</label>
-            <input asp-for="IsPersistent" type="checkbox"/>
-        </div>
         <div class="d-flex justify-content-between">
-            <a asp-controller="Home" asp-action="Index" class="btn btn-secondary">Back</a>
-            <button type="submit" value="LoginUser" class="btn btn-dark">Log in</button>
+            <a asp-controller="Home" asp-action="Index" class="btn">Back</a>
+            <button type="submit" value="LoginUser" class="btn">Log in</button>
         </div>         
     </form>
-    <p class=" mt-2 text-center alert-secondary" role="alert" ">@ViewBag.Message</p>
+    <p class=" mt-2 text-center alert-dark" role="alert" ">@ViewBag.Message</p>
+
 </div>
 

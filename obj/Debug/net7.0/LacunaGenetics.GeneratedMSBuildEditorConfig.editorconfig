@@ -108,15 +108,6 @@ build_metadata.AdditionalFiles.Identity = Views\Start\JobDone.cshtml
 build_metadata.AdditionalFiles.XamlRuntime = 
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Users/breno/Workspace/LacunaGenetics/Views/User/Create.cshtml]
-build_metadata.AdditionalFiles.SourceItemGroup = 
-build_metadata.AdditionalFiles.Link = 
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxDcmVhdGUuY3NodG1s
-build_metadata.AdditionalFiles.FullPath = D:\Users\breno\Workspace\LacunaGenetics\Views\User\Create.cshtml
-build_metadata.AdditionalFiles.Identity = Views\User\Create.cshtml
-build_metadata.AdditionalFiles.XamlRuntime = 
-build_metadata.AdditionalFiles.CssScope = 
-
 [D:/Users/breno/Workspace/LacunaGenetics/Views/User/Login.cshtml]
 build_metadata.AdditionalFiles.SourceItemGroup = 
 build_metadata.AdditionalFiles.Link = 
